@@ -1,0 +1,19 @@
+.main-layout{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0px;
+}
+.sidebar-layout{
+    width: 17%;
+}
+.component-layout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+    width: 83%;
+    height: 89vh;
+    background-image: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);
+}
