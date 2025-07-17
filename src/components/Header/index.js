@@ -1,10 +1,10 @@
-import schoollogo2 from '../../Assest/schoollogo2.png'
+import schoollogo2 from '../../Assest/schoollogo2.jpeg'
 
 import './index.css'
 
 const Header = () => (
     <div className="header">
-        <div className="header__logo" style={{width:"16%"}}>
+        <div className="header__logo" style={{width:"26%"}}>
             <img src={schoollogo2} alt="schoollogo2" className="logo"/> 
         </div>
                  

@@ -9,7 +9,7 @@ const Sidebar = () => (
             <i className="fas fa-times " id="cancel"></i>
         </label> */}
         <div className="sidebar">
-            <header>EYE ZONES</header>
+            {/* <header>EYE ZONES</header> */}
             {/* <Link className='style-link'> */}
                 <a href="/" className="active">
                     <i className="fas fa-qrcode"></i>
