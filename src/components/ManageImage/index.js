@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa'; // Importing icons
+import { SERVER_API_URL } from '../../server/server';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { ToastContainer, toast } from 'react-toastify';
@@ -54,7 +55,7 @@ const ManageImage = () => {
     // Fetch products from the API
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/product');
+            const response = await fetch(`${SERVER_API_URL}/product`);
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
             }
@@ -72,7 +73,7 @@ const ManageImage = () => {
     }, []);
 
     const deleteProduct = async (id) => {
-        const api = `http://localhost:8000/api/products/delete/${id}`;
+        const api = `${SERVER_API_URL}/api/products/delete/${id}`;
         try {
             const response = await fetch(api, {
                 method: 'DELETE',
@@ -130,7 +131,7 @@ const ManageImage = () => {
             };
 
             // API request to update the product
-            const response = await fetch(`http://localhost:8000/api/update/${editProduct.product_id}`, {
+            const response = await fetch(`${SERVER_API_URL}/api/update/${editProduct.product_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', // Set content type for JSON
@@ -224,7 +225,7 @@ const ManageImage = () => {
                                     {/* Image Section */}
                                     <div className="image-container">
                                         <img
-                                            src={`http://localhost:8000/${product?.product_thumnail_img}`}
+                                            src={`${SERVER_API_URL}/${product?.product_thumnail_img}`}
                                             alt={product.product_title || 'Product'}
                                             className="product-image"
                                             onClick={() => openPopup(product)}
@@ -295,7 +296,7 @@ const ManageImage = () => {
                                         {/* Image Section */}
                                         <div className="image-container">
                                             <img
-                                                src={`http://localhost:8000/${product?.product_thumnail_img}`}
+                                                src={`${SERVER_API_URL}/${product?.product_thumnail_img}`}
                                                 alt={product.product_title || 'Product'}
                                                 className="product-image"
                                                 onClick={() => openPopup(product)}
@@ -350,7 +351,7 @@ const ManageImage = () => {
                         <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                             <button className="close-btn" onClick={closePopup}>×</button>
                             <img
-                                src={`${'http://localhost:8000'}/${popupProduct?.product_thumnail_img}`}
+                                src={`${SERVER_API_URL}/${popupProduct?.product_thumnail_img}`}
                                 alt={popupProduct.product_title || 'Product'}
                                 className="popup-image"
                             />
@@ -398,7 +399,7 @@ const ManageImage = () => {
 
                             </div>
                         </div>
-                    </div>
+                  </div>
                 )
             }
 

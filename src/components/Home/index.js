@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import Header from '../Header';
+import { SERVER_API_URL } from '../../server/server';
 import Sidebar from '../Sidebar';
 
 import './index.css';
@@ -12,7 +13,7 @@ const Home = () => {
     // Fetch products from the API
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/product');
+            const response = await fetch(`${SERVER_API_URL}/product`);
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
             }
@@ -29,7 +30,7 @@ const Home = () => {
     // Fetch additional information from the second API
     const fetchAdditionalInfo = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/payment/details');
+            const response = await fetch(`${SERVER_API_URL}/api/payment/details`);
             if (!response.ok) {
                 throw new Error('Failed to fetch additional info');
             }
@@ -44,7 +45,7 @@ const Home = () => {
     // Fetch additional Address information from the second API
     const fetchAddressInfo = async () => {
         try {
-            const response = await fetch('http://localhost:8000/getallUserInfo');
+            const response = await fetch(`${SERVER_API_URL}/getallUserInfo`);
             if (!response.ok) {
                 throw new Error('Failed to fetch additional Address info');
             }
@@ -63,7 +64,7 @@ const Home = () => {
     const getProductImage = (productId) => {
         const product = products.find((product) => String(product.product_id) === String(productId));
         return product && product.product_thumnail_img
-            ? `http://localhost:8000/${product.product_thumnail_img}`
+            ? `${SERVER_API_URL}/${product.product_thumnail_img}`
             : null;
     };
 

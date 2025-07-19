@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
+import { SERVER_API_URL } from '../../server/server';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -72,7 +73,7 @@ const Home = () => {
         formData.append('frameMaterial', frameMaterial);
 
         try {
-            const response = await fetch('http://localhost:8000/product', {
+            const response = await fetch(`${SERVER_API_URL}/product`, {
                 method: 'POST',
                 body: formData,
             });

@@ -28,9 +28,9 @@ const Header = () => (
                 <li className="navbar__item">
                     <a href="#" className="navbar__link"><i data-feather="help-circle"></i><span>Help</span></a>
                 </li>
-                <li className="navbar__item">
+                {/* <li className="navbar__item">
                     <a href="#" className="navbar__link"><i data-feather="settings"></i><span>Settings</span></a>
-                </li>
+                </li> */}
             </ul>
         </nav>
     </div>

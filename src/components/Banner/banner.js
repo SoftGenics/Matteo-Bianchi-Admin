@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import axios from 'axios'; // Import Axios
 // import Header from '../Header'
+import { SERVER_API_URL } from '../../server/server';
 import Sidebar from '../Sidebar'
 
 import './banner.css'
@@ -70,7 +71,7 @@ const Banner = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/categories/all`);
+            const response = await axios.get(`${SERVER_API_URL}/api/categories/all`);
             setCategoriesData(response.data);
 
         } catch (err) {
@@ -80,7 +81,7 @@ const Banner = () => {
 
     const fetchBrandHeading = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/brand`);
+            const response = await axios.get(`${SERVER_API_URL}/brand`);
             setBrandHeading(response.data);
 
         } catch (err) {
@@ -92,7 +93,7 @@ const Banner = () => {
     const fetchData = async () => {
         try {
             // First API call
-            const response1 = await axios.get('http://localhost:8000/api/carousel/all');
+            const response1 = await axios.get(`${SERVER_API_URL}/api/carousel/all`);
             setUpdatedData(response1.data);
             console.log(response1.data, 'data')
             setLoading(false)
@@ -104,7 +105,7 @@ const Banner = () => {
     // slider
     const fetchSlider = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/slider`);
+            const response = await axios.get(`${SERVER_API_URL}/api/slider`);
             setSliderData(response.data.data);
             console.log("slider", response.data.data)
         } catch (err) {
@@ -128,7 +129,7 @@ const Banner = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/api/slider/edit/${selectedTopImageData.id}`, {
+            const response = await fetch(`${SERVER_API_URL}/api/slider/edit/${selectedTopImageData.id}`, {
                 method: 'PUT',
                 body: formData,
             });
@@ -162,7 +163,7 @@ const Banner = () => {
         formData.append('image_url', image);
         // console.log(formData, "kkkkk")
         // Replace 'your-api-endpoint' with your actual API endpoint
-        const apiUrl = `http://localhost:8000/api/carousel/edit/${selectedId}`;
+        const apiUrl = `${SERVER_API_URL}/api/carousel/edit/${selectedId}`;
 
         try {
             const response = await axios.put(apiUrl, formData);
@@ -186,7 +187,7 @@ const Banner = () => {
     const onSubmitBrand = async () => {
         try {
             // API call to delete the item
-            await axios.put(`http://localhost:8000/brand/product/edit/${selectedHeadingId}`, { brand_name: brandHeadingName });
+            await axios.put(`${SERVER_API_URL}/brand/product/edit/${selectedHeadingId}`, { brand_name: brandHeadingName });
             // Fetch updated data after deletion
             fetchData();
             fetchCategories()
@@ -213,7 +214,7 @@ const Banner = () => {
     const onSubmitCategory = async () => {
         try {
             // API call to delete the item
-            await axios.put(`http://localhost:8000/api/categories/edit/${selectedCategoryId}`, { categories_name: categories });
+            await axios.put(`${SERVER_API_URL}/api/categories/edit/${selectedCategoryId}`, { categories_name: categories });
             // Fetch updated data after deletion
             fetchData();
             fetchCategories()
@@ -310,7 +311,7 @@ const Banner = () => {
                                                 {sliderData.map((eachData) =>
                                                     eachData.slider_name === 'top_mini_image' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' style={{ height: "150px" }} src={`http://localhost:8000/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' style={{ height: "150px" }} src={`${SERVER_API_URL}/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700" , color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
@@ -355,7 +356,7 @@ const Banner = () => {
                                                         <div className="popup-preview">
                                                             <p>Current Image</p>
                                                             <img
-                                                                src={`http://localhost:8000/uploads/${selectedTopImageData.slider_url}`}
+                                                                src={`${SERVER_API_URL}/uploads/${selectedTopImageData.slider_url}`}
                                                                 alt="Preview"
                                                                 className="popup-preview-image"
                                                             />
@@ -377,7 +378,7 @@ const Banner = () => {
                                                 {sliderData.map((eachData) =>
                                                     eachData.slider_name === 'banner' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' style={{ height: "150px" }} src={`http://localhost:8000/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' style={{ height: "150px" }} src={`${SERVER_API_URL}/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700", color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
@@ -402,7 +403,7 @@ const Banner = () => {
                                                 {sliderData.map((eachData) =>
                                                     eachData.slider_name === 'product_image' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' style={{ height: "150px" }} src={`http://localhost:8000/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' style={{ height: "150px" }} src={`${SERVER_API_URL}/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700", color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
@@ -460,7 +461,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_1' && eachData.place === 'Group_A' && eachData.exact_place === 'left' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -482,7 +483,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_1' && eachData.place === 'Group_A' && eachData.exact_place === 'right' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -505,7 +506,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_2' && eachData.place === 'Group_A' && eachData.exact_place === 'left' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -528,7 +529,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_1' && eachData.place === 'Group_B' && eachData.exact_place === 'center_poster' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -552,7 +553,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_2' && eachData.place === 'Group_B' && eachData.exact_place === 'first' || eachData.exact_place === 'second' || eachData.exact_place === 'third' || eachData.exact_place === 'forth' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -576,7 +577,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_3' && eachData.place === 'Group_B' && eachData.exact_place === 'center_poster' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -600,7 +601,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     (eachData.section === 'section_1' && eachData.place === 'Group_C') && eachData.exact_place === 'first' || eachData.exact_place === 'second' || eachData.exact_place === 'third' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -623,7 +624,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_2' && eachData.place === 'Group_C' && eachData.exact_place === 'center_poster' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -646,7 +647,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_3' && eachData.place === 'Group_C' && eachData.exact_place === 'center_poster' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
@@ -669,7 +670,7 @@ const Banner = () => {
                                                 {updatedData.map((eachData) => (
                                                     eachData.section === 'section_4' && eachData.place === 'Group_C' && eachData.exact_place === 'center_poster' ? (
                                                         <div className='custom-card' key={eachData.id}>
-                                                            <img className='carousel-image' src={`http://localhost:8000/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
+                                                            <img className='carousel-image' src={`${SERVER_API_URL}/uploads/${eachData.image_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
                                                             <div className='card-details' >
                                                                 <p style={{ color: "#000", fontSize: "16px", marginBottom: "7px" }}><strong>Place:</strong> {eachData.place}</p>
