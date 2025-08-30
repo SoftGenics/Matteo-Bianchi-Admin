@@ -309,3 +309,161 @@
 .address-td::-webkit-scrollbar-thumb:hover {
     background: #555; /* Darker color when hovered */
 }
+
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Popup Box */
+.popup {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.popup h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+.popup input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.popup-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-buttons button:first-child {
+  background: #007bff;
+  color: white;
+}
+
+.popup-buttons button:last-child {
+  background: #ccc;
+}
+
+
+/* CourierPopup.css */
+
+.courier-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .courier-popup-container {
+    background: #fff;
+    padding: 24px;
+    /* border-radius: 12px; */
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    animation: popupFadeIn 0.3s ease-in-out;
+  }
+  
+  .courier-popup-title {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+  
+  .courier-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .courier-input:focus {
+    border-color: #0077ff;
+    box-shadow: 0 0 5px rgba(0, 119, 255, 0.4);
+  }
+  
+  .courier-popup-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .courier-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .courier-btn-update {
+    background: #0077ff;
+    color: #fff;
+  }
+  
+  .courier-btn-update:hover {
+    background: #005fd1;
+  }
+  
+  .courier-btn-cancel {
+    background: #f44336;
+    color: #fff;
+  }
+  
+  .courier-btn-cancel:hover {
+    background: #d32f2f;
+  }
+  
+  @keyframes popupFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

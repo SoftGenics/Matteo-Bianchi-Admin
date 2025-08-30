@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from 'react';
 // import Header from '../Header';
 import { SERVER_API_URL } from '../../server/server';
+import { ToastContainer, toast } from 'react-toastify';
 import Sidebar from '../Sidebar';
 
 import './index.css';
+// import { toast } from 'react-toastify';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [additionalInfo, setAdditionalInfo] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
+    const [openCourierPopup, setOpenCourierPopup] = useState(false)
+    const [selectedOrderId, setSelectedOrderId] = useState(null);
+    const [formData, setFormData] = useState({
+        delivery_status: "",
+        slug: "",
+        tracking_number: ""
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
     // Fetch products from the API
     const fetchProducts = async () => {
@@ -100,17 +116,45 @@ const Home = () => {
         ) : 'No Address Found';
     };
 
+    const updateCourierDetails = (order) => {
+        setSelectedOrderId(order.id)
+        setFormData({
+            tracking_number: order.tracking_number || "",
+            slug: order.slug || "",
+            delivery_status: order.delivery_status || "processing", // default if null
+        });
+        setOpenCourierPopup(true);
+    };
+
+    const handleUpdate = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/payment/orders/${selectedOrderId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            console.log("✅ Order updated:", data);
+            toast.success("Order updated successfully!");
+            setOpenCourierPopup(false);
+            fetchAdditionalInfo();
+        } catch (error) {
+            console.error("❌ Error updating order:", error);
+            toast.error("❌ Error updating order:", error);
+        }
+    };
 
 
     return (
         <>
             {/* <Header /> */}
+            <ToastContainer position="top-right" autoClose={4000} />
             <div className="main-layout">
                 <div className="sidebar-layout">
                     <Sidebar />
                 </div>
-                <div className="component-layout" style={{padding:"0"}}>
-                    <div className="home-dashbord-container" style={{padding:"0"}}>
+                <div className="component-layout" style={{ padding: "0" }}>
+                    <div className="home-dashbord-container" style={{ padding: "0" }}>
                         {/* Display Additional Info in Table */}
                         <div className="additional-info-list">
                             {/* <h2 className="client-heading">Additional Information</h2> */}
@@ -124,8 +168,9 @@ const Home = () => {
                                             <th>Product ID</th>
                                             <th>Payment ID</th>
                                             <th>Address</th>
-                                            <th>Lens Type</th>
                                             <th>Lens/Price</th>
+                                            <th>QTY.</th>
+                                            <th>Lens Type</th>
                                             <th>Selected Type</th>
                                             <th>Left Sph</th>
                                             <th>Left Cyl</th>
@@ -133,6 +178,7 @@ const Home = () => {
                                             <th>Right Cyl</th>
                                             <th>Axis</th>
                                             <th>Traking Number</th>
+                                            <th>Courier</th>
                                             <th>Delivery Status</th>
                                             <th>Date</th>
                                         </tr>
@@ -199,16 +245,18 @@ const Home = () => {
                                                             'Something is missing'
                                                         )}
                                                     </td>
-                                                    <td>{info.selectLansType}</td>
                                                     <td>{info.selected_Lens_Or_ProductPrice}</td>
+                                                    <td>{info.product_quantity ? info.product_quantity : "1"}</td>
+                                                    <td>{info.selectLansType}</td>
                                                     <td>{info.selected_type}</td>
                                                     <td>{info.left_sph}</td>
                                                     <td>{info.left_cyl}</td>
                                                     <td>{info.right_sph}</td>
                                                     <td>{info.right_cyl}</td>
                                                     <td>{info.axis || 'N/A'}</td>
-                                                    <td>{info.traking_number || 'N/A'}</td>
-                                                    <td>{info.delivery_status || 'N/A'}</td>
+                                                    <td onClick={() => updateCourierDetails(info)}>{info.tracking_number || 'N/A'}</td>
+                                                    <td onClick={() => updateCourierDetails(info)}>{info.slug || 'N/A'}</td>
+                                                    <td onClick={() => updateCourierDetails(info)}>{info.delivery_status || 'N/A'}</td>
                                                     <td>{new Date(info.createdAt).toLocaleString()}</td>
                                                 </tr>
                                             ))}
@@ -220,6 +268,51 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            {openCourierPopup && (
+                <div className="courier-popup-overlay">
+                    <div className="courier-popup-container">
+                        <h2 className="courier-popup-title">Update Courier Details</h2>
+                        <input
+                            type="text"
+                            name="tracking_number"
+                            placeholder="Tracking Number"
+                            value={formData.tracking_number}
+                            onChange={handleChange}
+                            className="courier-input"
+                        />
+                        <input
+                            type="text"
+                            name="slug"
+                            placeholder="Courier Slug"
+                            value={formData.slug}
+                            onChange={handleChange}
+                            className="courier-input"
+                        />
+                        <input
+                            type="text"
+                            name="delivery_status"
+                            placeholder="Delivery Status"
+                            value={formData.delivery_status}
+                            onChange={handleChange}
+                            className="courier-input"
+                        />
+                        <div className="courier-popup-actions">
+                            <button className="courier-btn courier-btn-update" onClick={handleUpdate}>
+                                Update
+                            </button>
+                            <button
+                                className="courier-btn courier-btn-cancel"
+                                onClick={() => setOpenCourierPopup(false)}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
         </>
     );
 };
