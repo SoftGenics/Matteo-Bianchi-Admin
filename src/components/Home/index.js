@@ -128,7 +128,7 @@ const Home = () => {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/api/payment/orders/${selectedOrderId}`, {
+            const response = await fetch(`${SERVER_API_URL}/api/payment/orders/${selectedOrderId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
