@@ -36,6 +36,8 @@ const Home = () => {
         console.log('Form Data:', {
             productAllImg,
             productThumbnailImg,
+            productVideo,
+            productVideoThumbnail,
             productTitle,
             highlights,
             productPrice,
@@ -44,7 +46,11 @@ const Home = () => {
             frameType,
             gender,
             countInStock,
-            // color: { [colorName]: colorCode },
+            frameColor,
+            lenshColor,
+            frameDescription,
+            lensInformation,
+            frameMaterial
         });
 
         // const colorData = JSON.stringify([{ [colorName]: colorCode }]);
@@ -55,6 +61,7 @@ const Home = () => {
                 formData.append('product_all_img', file);
             });
         }
+        
         formData.append('product_thumnail_img', productThumbnailImg);
         formData.append('product_title', productTitle);
         formData.append('video_url', productVideo);
