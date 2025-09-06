@@ -220,20 +220,15 @@ const Home = () => {
                                         value={lensType}
                                         onChange={(e) => setLensType(e.target.value)}
                                     >
-                                        <option value="">Select Lens Type</option>
-                                        <option value="Aviator">Aviator</option>
-                                        <option value="Cats Eye">Cats Eye</option>
-                                        <option value="Rectangle">Rectangle</option>
-                                        <option value="Round">Round</option>
-                                        <option value="Square">Square</option>
-                                        <option value="Wayfarer">Wayfarer</option>
-                                        <option value="Sports">Sports</option>
-                                        <option value="Hexagonal">Hexagonal</option>
-                                        <option value="Computer Glasses">Computer Glasses</option>
-                                        <option value="Sunglasses">Sunglasses</option>
-                                        <option value="Prescription">Prescription</option>
-                                        <option value="Zero Power">Zero Power</option>
-                                        <option value="Blinkers">Blinkers</option>
+                                        <option value="">Select One</option>
+                                        <option value="Gradient">Gradient</option>
+                                        <option value="Mirrored">Mirrored</option>
+                                        <option value="Night Vision">Night Vision</option>
+                                        <option value="Photochromatic Lens">Photochromatic Lens</option>
+                                        <option value="Polarized">Polarized</option>
+                                        <option value="Riding Glasses">Riding Glasses</option>
+                                        <option value="Toughened Glass Lens">Toughened Glass Lens</option>
+                                        <option value="UV Protection">UV Protection</option>
                                     </select>
                                 </div>
 
@@ -349,6 +344,7 @@ const Home = () => {
                                         type="text"
                                         id="frameMaterial"
                                         value={frameMaterial}
+                                        placeholder='Frame Material Should be less then 45 characters'
                                         onChange={(e) => setFrameMaterial(e.target.value)}
                                     />
                                 </div>
