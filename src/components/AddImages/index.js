@@ -344,7 +344,7 @@ const Home = () => {
                                         type="text"
                                         id="frameMaterial"
                                         value={frameMaterial}
-                                        placeholder='Frame Material Should be less then 45 characters'
+                                        placeholder='Frame Material Should be 45 characters.'
                                         onChange={(e) => setFrameMaterial(e.target.value)}
                                     />
                                 </div>
