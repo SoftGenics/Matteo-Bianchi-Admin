@@ -16,8 +16,8 @@ import './App.css';
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route exact path="/orders" element={<Home2 />} />
+      <Route exact path="/cashfree/sale" element={<Home2 />} />
+      <Route exact path="/cashfree/sale" element={<Home />} />
       <Route exact path="/add-images" element={<AddImages />} />
       {/* <Route exact path="/add-videos" element={<AddVideos />} /> */}
       <Route exact path="/manage-image" element={<ManageImage />} />

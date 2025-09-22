@@ -16,6 +16,11 @@ const Sidebar = () => (
                     <span>Dashboard</span>
                 </a>
             {/* </Link> */}
+            <a href="/cashfree/sale">
+                    <i className="fas fa-qrcode"></i>
+                    <span>Cash free Sale</span>
+                </a>
+            
             <a href="/add-images">
                 <i className="fas fa-link"></i>
                 <span>Add Product</span>
