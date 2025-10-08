@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const Sidebar = () => (
@@ -8,61 +8,63 @@ const Sidebar = () => (
             <i className="fas fa-bars " id="btn"></i>
             <i className="fas fa-times " id="cancel"></i>
         </label> */}
-        <div className="sidebar">
-            {/* <header>EYE ZONES</header> */}
-            {/* <Link className='style-link'> */}
-                <a href="/" className="active">
-                    <i className="fas fa-qrcode"></i>
-                    <span>Dashboard</span>
-                </a>
-            {/* </Link> */}
-            <a href="/cashfree/sale">
-                    <i className="fas fa-qrcode"></i>
-                    <span>Cash free Sale</span>
-                </a>
-            
-            <a href="/add-images">
-                <i className="fas fa-link"></i>
-                <span>Add Product</span>
-            </a>
-            <a href="/manage-image">
-                <i className="fas fa-calendar"></i>
-                <span>Manage Product</span>
-            </a>
-            
-            <a href="/banner">
-                <i className="fas fa-stream"></i>
-                <span>Home Page</span>
-            </a>
-            
-            <a href="/#">
-                <i className="far fa-question-circle"></i>
-                <span>Manage Video</span>
-            </a>
-            <a href="#">
-                <i className="fas fa-sliders-h"></i>
-                <span>Services</span>
-            </a>
+       <div className="sidebar">
+            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </NavLink>
 
-            <a href="/contact">
-                <i className="far fa-envelope"></i>
-                <span>Contact</span>
-            </a>
-            {/* <a href="#">
-                <i className="fas fa-sliders-h"></i>
+            <NavLink to="/cashfree/sale" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-money-bill-wave"></i>
+                <span>Cash Free Sale</span>
+            </NavLink>
+
+            <NavLink to="/purse" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-wallet"></i>
+                <span>Purse</span>
+            </NavLink>
+
+            <NavLink to="/jewelry" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-gem"></i>
+                <span>Jewelry</span>
+            </NavLink>
+
+            <NavLink to="/clothing" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-tshirt"></i>
+                <span>Clothing</span>
+            </NavLink>
+
+            <NavLink to="/add-images" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-plus-circle"></i>
+                <span>Add Product</span>
+            </NavLink>
+
+            <NavLink to="/manage-image" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-tasks"></i>
+                <span>Manage Product</span>
+            </NavLink>
+
+            <NavLink to="/banner" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-home"></i>
+                <span>Home Page</span>
+            </NavLink>
+
+            <NavLink to="/manage-video" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-video"></i>
+                <span>Manage Video</span>
+            </NavLink>
+
+            <NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-concierge-bell"></i>
                 <span>Services</span>
-            </a>
-            <a href="#">
-                <i className="far fa-envelope"></i>
+            </NavLink>
+
+            <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>
+                <i className="fas fa-envelope"></i>
                 <span>Contact</span>
-            </a> */}
+            </NavLink>
         </div>
 
-        {/* <div className="frame">
-            <p> Responsive </p>
-            <h2>SIDE BAR</h2>
-            <p>in Pure CSS</p>
-        </div> */}
     </div>
 );
 
