@@ -10,6 +10,9 @@ import ManageImage from "./components/ManageImage"
 import Contact from "./components/Contact"
 import Banner from './components/Banner/banner'
 
+import Purse from "./components/Purse";
+import PurseManage from "./components/PurseManage"
+
 
 import './App.css';
 
@@ -24,6 +27,9 @@ const App = () => (
       <Route exact path="/banner" element={<Banner />} />
       {/* <Route exact path="/manage-video" element={<ManageVideo />} /> */}
       <Route exact path="/contact" element={<Contact />} />
+
+      <Route exact path="/purse" element={<Purse />} />
+      <Route exact path="/purse-manage" element={<PurseManage />} />
     </Routes>
   </BrowserRouter>
 );

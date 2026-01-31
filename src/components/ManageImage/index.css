@@ -6,19 +6,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* Product Card */
 .product-card {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 450px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 290px;
 }
 
 .product-card:hover {
@@ -28,18 +30,17 @@
 
 /* Image Section */
 .image-container {
-  flex: 1;
-  background: #f9f9f9;
+  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 10px; 
+  height: 150px;
+  margin-top: 20px;
 }
 
 .product-image {
-  /* max-width: 100%; */
   width: 100%;
-  height: auto;
   object-fit: cover;
   border-radius: 5px ;
 }
@@ -53,7 +54,12 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  overflow-y: scroll;
 }
+
+
+
+
 
 .details-container h3 {
   margin: 0;
@@ -382,7 +388,7 @@ button:disabled {
 /* General Styles */
 .unique-overlay {
   position: fixed;
-  top: 6%;
+  top: 0%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -395,28 +401,44 @@ button:disabled {
 }
 
 .unique-container {
-  background-color: white;
+  background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
   padding: 20px;
-  border-radius: 8px;
-  width: 630px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 84vh; /* Prevents the container from growing too large */
-  overflow-y: auto; /* Adds vertical scrolling if content overflows */
+  border-radius: 10px;
+  width: 690px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  max-height: 89vh;
+  overflow-y: auto;
 }
+
 
 /* Close Button */
 .unique-close-btn {
   position: absolute;
-  top: 10%;
-  right: 30%;
+  top: 14%;
+  right: 1%;
   background-color: transparent;
   border: none;
-  font-size: 30px;
+  font-size: 20px;
   color: #333;
   cursor: pointer;
   padding: 10px;
   z-index: 100; /* Ensure it stays on top */
   transition: color 0.3s ease; /* Smooth transition on hover */
+}
+.unique-title-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #111827, #1f2933) !important;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  width: 95%;
+  height: 30px;
+  margin-bottom: 20px;
 }
 
 .unique-close-btn:hover {
@@ -430,10 +452,12 @@ button:disabled {
 }
 
 .unique-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #333;
+  color: #f8fafc;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 
 .unique-form {
@@ -460,6 +484,8 @@ button:disabled {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 
 .unique-input:focus,
@@ -467,6 +493,26 @@ button:disabled {
 .unique-textarea:focus {
   outline: none;
   border-color: #007BFF;
+}
+.unique-input,
+.unique-select,
+.unique-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unique-input:focus,
+.unique-select:focus,
+.unique-textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .unique-textarea {
