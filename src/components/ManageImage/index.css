@@ -181,13 +181,14 @@
 .popup-details {
   /* text-align: left; */
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  width: 98%;
   padding-left: 20px;
   overflow-y: scroll;
   height: 430px;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 }
 
 .popup-details p {
@@ -214,16 +215,34 @@
 
 /* Product Details */
 .popup-details p {
+  text-align: left;
+  text-align: justify !important;
   font-size: 16px;
   line-height: 1.6;
   color: #555;
-  margin: 10px 0;
+  /* margin: 10px 0; */
+  width: 48% !important;
 }
 
 .popup-details strong {
   font-weight: 600;
   color: #000;
 }
+
+.popup-details p {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #1f2937;       /* slate gray – soft & readable */
+  margin: 10px 0;
+  width: 50%;
+}
+
+.popup-details strong {
+  font-weight: 600;
+  color: #5d99d4;      /* deep charcoal – heading feel */
+}
+
 
 /* Highlighted Price */
 .popup-price {
@@ -276,7 +295,7 @@
 /* Overlay for Popup */
 .popup-overlay {
   position: fixed;
-  top: 0;
+  top: 10% !important;
   left: 0;
   width: 100%;
   height: 100%;

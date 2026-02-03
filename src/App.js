@@ -12,7 +12,8 @@ import Banner from './components/Banner/banner'
 
 import Purse from "./components/Purse";
 import PurseManage from "./components/PurseManage"
-
+import Jewelry from "./components/Jewelry";
+import JewelryManage from "./components/JewelryManage"
 
 import './App.css';
 
@@ -30,6 +31,8 @@ const App = () => (
 
       <Route exact path="/purse" element={<Purse />} />
       <Route exact path="/purse-manage" element={<PurseManage />} />
+      <Route exact path="/jewelry" element={<Jewelry />} />
+      <Route exact path="/jewelry-manage" element={<JewelryManage />} />
     </Routes>
   </BrowserRouter>
 );

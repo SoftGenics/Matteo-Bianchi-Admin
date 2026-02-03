@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa'; // Importing icons
 import { SERVER_API_URL } from '../../server/server';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -19,7 +18,7 @@ const ManageImage = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${SERVER_API_URL}/api/bags`);
+            const response = await fetch(`${SERVER_API_URL}/api/jewellery`);
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
             }
@@ -42,7 +41,7 @@ const ManageImage = () => {
     }, []);
 
     const deleteProduct = async (id) => {
-        const api = `${SERVER_API_URL}/api/bags/${id}`;
+        const api = `${SERVER_API_URL}/api/jewellery/${id}`;
         try {
             const response = await fetch(api, {
                 method: 'DELETE',
@@ -144,8 +143,6 @@ const ManageImage = () => {
             setActivebtn(true);
         }
     };
-
-
 
     if (loading) {
         return <div>Loading...</div>;
@@ -292,9 +289,7 @@ const ManageImage = () => {
             {popupProduct && (
                 <div className="popup-overlay" onClick={closePopup}>
                     <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-
                         <button className="close-btn" onClick={closePopup}>×</button>
-
                         {/* Thumbnail Image */}
                         <img
                             src={`${SERVER_API_URL}/${popupProduct.thumbnail_url}`}
@@ -375,21 +370,6 @@ const ManageImage = () => {
                                         className="unique-input"
                                     />
                                 </div>
-                                {/* <div className="unique-form-group">
-                                    <label htmlFor="sub_category" className="unique-label">Sub_Category:</label>
-                                    <select
-                                        id="sub_category"
-                                        name="sub_category"
-                                        value={editData.sub_category || ''}
-                                        onChange={handleInputChange}
-                                        className="unique-select"
-                                    >
-                                        <option value="">Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Unisex">Unisex</option>
-                                    </select>
-                                </div> */}
 
                                 <div className="unique-form-group">
                                     <label htmlFor="product_name" className="unique-label">Product_Name:</label>
@@ -550,50 +530,7 @@ const ManageImage = () => {
                                     />
                                 </div>
 
-                                {/* <div className="unique-form-group">
-                                    <label htmlFor="lensType" className="unique-label">Lens Type:</label>
-                                    <select
-                                        id="lensType"
-                                        name="lens_type"
-                                        value={editData.lens_type || ''}
-                                        onChange={handleInputChange}
-                                        className="unique-select"
-                                    >
-                                        <option value="">Select Lens Type</option>
-                                        <option value="Aviator">Aviator</option>
-                                        <option value="Cats Eye">Cats Eye</option>
-                                        <option value="Rectangle">Rectangle</option>
-                                        <option value="Round">Round</option>
-                                        <option value="Square">Square</option>
-                                        <option value="Wayfarer">Wayfarer</option>
-                                        <option value="Sports">Sports</option>
-                                        <option value="Hexagonal">Hexagonal</option>
-                                        <option value="Computer Glasses">Computer Glasses</option>
-                                        <option value="Sunglasses">Sunglasses</option>
-                                        <option value="Prescription">Prescription</option>
-                                        <option value="Zero Power">Zero Power</option>
-                                        <option value="Blinkers">Blinkers</option>
-                                    </select>
-                                </div>
-
-                                <div className="unique-form-group">
-                                    <label htmlFor="frameType" className="unique-label">Frame Type:</label>
-                                    <select
-                                        id="frameType"
-                                        name="frame_type"
-                                        value={editData.frame_type || ''}
-                                        onChange={handleInputChange}
-                                        className="unique-select"
-                                    >
-                                        <option value="">Select Frame Type</option>
-                                        <option value="Full Rim Rectangle">Full Rim Rectangle</option>
-                                        <option value="Lykos Eyewear">Lykos Eyewear</option>
-                                        <option value="Rimless">Rimless</option>
-                                        <option value="EyePoppin">EyePoppin</option>
-                                    </select>
-                                </div> */}
-
-
+                              
                                 {activebtn ? (
                                     <button type="submit" className="unique-btn">Update</button>
                                 ) : (

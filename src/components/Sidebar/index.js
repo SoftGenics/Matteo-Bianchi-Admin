@@ -61,11 +61,11 @@ const Sidebar = () => {
 
                 {openJewelry && (
                     <div className="submenu">
-                        <NavLink to="/jewellery" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/jewelry" className={({ isActive }) => isActive ? "active" : ""}>
                             ➕ Add Jewelry
                         </NavLink>
 
-                        <NavLink to="/J" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/jewelry-manage" className={({ isActive }) => isActive ? "active" : ""}>
                             🛠 Manage Jewelry
                         </NavLink>
                     </div>
