@@ -6,13 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
-const Jewelry = () => {
+const Footwear = () => {
     const [productAllImg, setProductAllImg] = useState([]);
     const [thumbnailImg, setThumbnailImg] = useState(null);
     const [videoUrl, setVideoUrl] = useState(null);
     const [videoThumbnail, setVideoThumbnail] = useState(null);
 
-    const [mainCategory, setMainCategory] = useState('jewellery');
+    const [mainCategory, setMainCategory] = useState('footwear');
     const [subCategory, setSubCategory] = useState('');
     const [productName, setProductName] = useState('');
     const [productType, setProductType] = useState('');
@@ -24,11 +24,13 @@ const Jewelry = () => {
     const [description, setDescription] = useState('');
     const [stockStatus, setStockStatus] = useState('');
 
-    // Jewellery specific
+    /* ✅ FOOTWEAR MODEL FIELDS */
     const [materialType, setMaterialType] = useState('');
-    const [stoneType, setStoneType] = useState('');
-    const [weight, setWeight] = useState('');
+    const [soleType, setSoleType] = useState('');
+    const [sizeType, setSizeType] = useState('');
+    const [closureType, setClosureType] = useState('');
     const [sameColorType, setSameColorType] = useState('');
+    const [heelHeight, setHeelHeight] = useState('');
 
     const [submitting, setSubmitting] = useState(false);
 
@@ -38,7 +40,7 @@ const Jewelry = () => {
         setVideoUrl(null);
         setVideoThumbnail(null);
 
-        setMainCategory('jewellery');
+        setMainCategory('footwear');
         setSubCategory('');
         setProductName('');
         setProductType('');
@@ -51,9 +53,11 @@ const Jewelry = () => {
         setStockStatus('');
 
         setMaterialType('');
-        setStoneType('');
-        setWeight('');
+        setSoleType('');
+        setSizeType('');
+        setClosureType('');
         setSameColorType('');
+        setHeelHeight('');
     };
 
     const handleSubmit = async (e) => {
@@ -83,13 +87,15 @@ const Jewelry = () => {
             formData.append('description', description);
             formData.append('stock_status', stockStatus);
 
-            // Jewellery fields
+            /* ✅ FOOTWEAR DATA */
             formData.append('material_type', materialType);
-            formData.append('stone_type', stoneType);
-            formData.append('weight', weight);
+            formData.append('sole_type', soleType);
+            formData.append('size_type', sizeType);
+            formData.append('closure_type', closureType);
             formData.append('same_color_type', sameColorType);
+            formData.append('heel_height', heelHeight);
 
-            const response = await fetch(`${SERVER_API_URL}/api/jewellery`, {
+            const response = await fetch(`${SERVER_API_URL}/api/footwear`, {
                 method: 'POST',
                 body: formData,
             });
@@ -97,10 +103,10 @@ const Jewelry = () => {
             const data = await response.json();
 
             if (response.ok) {
-                toast.success('Jewellery added successfully');
+                toast.success('Footwear added successfully');
                 resetForm();
             } else {
-                toast.error(data?.message || 'Failed to add jewellery');
+                toast.error(data?.message || 'Failed to add footwear');
             }
         } catch (error) {
             console.error(error);
@@ -124,60 +130,40 @@ const Jewelry = () => {
                     <div className="form-container">
                         <form onSubmit={handleSubmit}>
 
-                            {/* Images */}
                             <div className="form-group">
                                 <label>Upload Product Images:</label>
-                                <input
-                                    type="file"
-                                    multiple
-                                    accept="image/*"
-                                    onChange={(e) => setProductAllImg(e.target.files)}
-                                />
+                                <input type="file" multiple accept="image/*"
+                                    onChange={(e) => setProductAllImg(e.target.files)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Thumbnail Image:</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => setThumbnailImg(e.target.files[0])}
-                                />
+                                <input type="file" accept="image/*"
+                                    onChange={(e) => setThumbnailImg(e.target.files[0])} />
                             </div>
 
                             <div className="form-group">
                                 <label>Video:</label>
-                                <input
-                                    type="file"
-                                    accept="video/*"
-                                    onChange={(e) => setVideoUrl(e.target.files[0])}
-                                />
+                                <input type="file" accept="video/*"
+                                    onChange={(e) => setVideoUrl(e.target.files[0])} />
                             </div>
 
                             <div className="form-group">
                                 <label>Video Thumbnail:</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => setVideoThumbnail(e.target.files[0])}
-                                />
+                                <input type="file" accept="image/*"
+                                    onChange={(e) => setVideoThumbnail(e.target.files[0])} />
                             </div>
 
-                            {/* Basic Info */}
                             <div className="form-group">
                                 <label>Main Category:</label>
-                                <input
-                                    type="text"
-                                    value={mainCategory}
-                                    onChange={(e) => setMainCategory(e.target.value)}
-                                />
+                                <input value={mainCategory}
+                                    onChange={(e) => setMainCategory(e.target.value)} />
                             </div>
-                            
+
                             <div className="form-group">
                                 <label>Sub Category:</label>
-                                <select
-                                    value={subCategory}
-                                    onChange={(e) => setSubCategory(e.target.value)}
-                                >
+                                <select value={subCategory}
+                                    onChange={(e) => setSubCategory(e.target.value)}>
                                     <option value="">Select</option>
                                     <option value="Men">Men</option>
                                     <option value="Women">Women</option>
@@ -188,74 +174,99 @@ const Jewelry = () => {
 
                             <div className="form-group">
                                 <label>Product Name:</label>
-                                <input value={productName} onChange={(e) => setProductName(e.target.value)} />
+                                <input value={productName}
+                                    onChange={(e) => setProductName(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Product Type:</label>
-                                <input value={productType} onChange={(e) => setProductType(e.target.value)} />
+                                <input value={productType}
+                                    onChange={(e) => setProductType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Product Variant:</label>
-                                <input value={productVariant} onChange={(e) => setProductVariant(e.target.value)} />
+                                <input value={productVariant}
+                                    onChange={(e) => setProductVariant(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Brand Name:</label>
-                                <input value={brandName} onChange={(e) => setBrandName(e.target.value)} />
+                                <input value={brandName}
+                                    onChange={(e) => setBrandName(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Color:</label>
-                                <input value={color} onChange={(e) => setColor(e.target.value)} />
+                                <input value={color}
+                                    onChange={(e) => setColor(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Price:</label>
-                                <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                                <input type="number" value={price}
+                                    onChange={(e) => setPrice(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Discount %:</label>
-                                <input type="number" value={discountPercent} onChange={(e) => setDiscountPercent(e.target.value)} />
+                                <input type="number" value={discountPercent}
+                                    onChange={(e) => setDiscountPercent(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Description:</label>
-                                <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <textarea value={description}
+                                    onChange={(e) => setDescription(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Stock Status:</label>
-                                <input value={stockStatus} onChange={(e) => setStockStatus(e.target.value)} />
+                                <input value={stockStatus}
+                                    onChange={(e) => setStockStatus(e.target.value)} />
                             </div>
 
-                            {/* Jewellery Attributes */}
+                            {/* FOOTWEAR EXTRA FIELDS */}
                             <div className="form-group">
                                 <label>Material Type:</label>
-                                <input value={materialType} onChange={(e) => setMaterialType(e.target.value)} />
+                                <input value={materialType}
+                                    onChange={(e) => setMaterialType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
-                                <label>Stone Type:</label>
-                                <input value={stoneType} onChange={(e) => setStoneType(e.target.value)} />
+                                <label>Sole Type:</label>
+                                <input value={soleType}
+                                    onChange={(e) => setSoleType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
-                                <label>Weight:</label>
-                                <input placeholder="e.g. 5g" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                                <label>Size Type:</label>
+                                <input value={sizeType}
+                                    onChange={(e) => setSizeType(e.target.value)} />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Closure Type:</label>
+                                <input value={closureType}
+                                    onChange={(e) => setClosureType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Same Color Type:</label>
-                                <input value={sameColorType} onChange={(e) => setSameColorType(e.target.value)} />
+                                <input value={sameColorType}
+                                    onChange={(e) => setSameColorType(e.target.value)} />
                             </div>
 
+                            <div className="form-group">
+                                <label>Heel Height:</label>
+                                <input value={heelHeight}
+                                    onChange={(e) => setHeelHeight(e.target.value)} />
+                            </div>
 
                             <button type="submit" disabled={submitting}>
                                 {submitting ? 'Submitting...' : 'Submit'}
                             </button>
+
                         </form>
                     </div>
                 </div>
@@ -264,4 +275,4 @@ const Jewelry = () => {
     );
 };
 
-export default Jewelry;
+export default Footwear;

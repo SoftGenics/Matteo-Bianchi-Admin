@@ -38,7 +38,7 @@ const Purse = () => {
         setVideoUrl(null);
         setVideoThumbnail(null);
 
-        setMainCategory('');
+        setMainCategory('purse');
         setSubCategory('');
         setProductName('');
         setProductType('');
@@ -188,9 +188,9 @@ const Purse = () => {
                                     onChange={(e) => setSubCategory(e.target.value)}
                                 >
                                     <option value="">Select Gender</option>
-                                    <option value="For Men">Men</option>
-                                    <option value="For Women">Women</option>
-                                    <option value="For Kids">For Kids</option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Kids">For Kids</option>
                                     <option value="Unisex">Unisex</option>
                                 </select>
                             </div>

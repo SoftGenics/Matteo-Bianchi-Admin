@@ -6,13 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
-const Jewelry = () => {
+const Clothing = () => {
     const [productAllImg, setProductAllImg] = useState([]);
     const [thumbnailImg, setThumbnailImg] = useState(null);
     const [videoUrl, setVideoUrl] = useState(null);
     const [videoThumbnail, setVideoThumbnail] = useState(null);
 
-    const [mainCategory, setMainCategory] = useState('jewellery');
+    const [mainCategory, setMainCategory] = useState('clothings');
     const [subCategory, setSubCategory] = useState('');
     const [productName, setProductName] = useState('');
     const [productType, setProductType] = useState('');
@@ -24,11 +24,14 @@ const Jewelry = () => {
     const [description, setDescription] = useState('');
     const [stockStatus, setStockStatus] = useState('');
 
-    // Jewellery specific
+    /* ✅ CLOTHING MODEL FIELDS (ADDED ONLY) */
+    const [size, setSize] = useState('');
     const [materialType, setMaterialType] = useState('');
-    const [stoneType, setStoneType] = useState('');
-    const [weight, setWeight] = useState('');
+    const [fabricType, setFabricType] = useState('');
+    const [fitType, setFitType] = useState('');
+    const [patternType, setPatternType] = useState('');
     const [sameColorType, setSameColorType] = useState('');
+    const [careInstructions, setCareInstructions] = useState('');
 
     const [submitting, setSubmitting] = useState(false);
 
@@ -38,7 +41,7 @@ const Jewelry = () => {
         setVideoUrl(null);
         setVideoThumbnail(null);
 
-        setMainCategory('jewellery');
+        setMainCategory('clothings');
         setSubCategory('');
         setProductName('');
         setProductType('');
@@ -50,10 +53,13 @@ const Jewelry = () => {
         setDescription('');
         setStockStatus('');
 
+        setSize('');
         setMaterialType('');
-        setStoneType('');
-        setWeight('');
+        setFabricType('');
+        setFitType('');
+        setPatternType('');
         setSameColorType('');
+        setCareInstructions('');
     };
 
     const handleSubmit = async (e) => {
@@ -83,13 +89,16 @@ const Jewelry = () => {
             formData.append('description', description);
             formData.append('stock_status', stockStatus);
 
-            // Jewellery fields
+            /* ✅ MODEL MAPPED FIELDS */
+            formData.append('size', JSON.stringify(size.split(',')));
             formData.append('material_type', materialType);
-            formData.append('stone_type', stoneType);
-            formData.append('weight', weight);
+            formData.append('fabric_type', fabricType);
+            formData.append('fit_type', fitType);
+            formData.append('pattern_type', patternType);
             formData.append('same_color_type', sameColorType);
+            formData.append('care_instructions', careInstructions);
 
-            const response = await fetch(`${SERVER_API_URL}/api/jewellery`, {
+            const response = await fetch(`${SERVER_API_URL}/api/clothing`, {
                 method: 'POST',
                 body: formData,
             });
@@ -97,10 +106,10 @@ const Jewelry = () => {
             const data = await response.json();
 
             if (response.ok) {
-                toast.success('Jewellery added successfully');
+                toast.success('Clothing added successfully');
                 resetForm();
             } else {
-                toast.error(data?.message || 'Failed to add jewellery');
+                toast.error(data?.message || 'Failed to add clothing');
             }
         } catch (error) {
             console.error(error);
@@ -127,42 +136,29 @@ const Jewelry = () => {
                             {/* Images */}
                             <div className="form-group">
                                 <label>Upload Product Images:</label>
-                                <input
-                                    type="file"
-                                    multiple
-                                    accept="image/*"
-                                    onChange={(e) => setProductAllImg(e.target.files)}
-                                />
+                                <input type="file" multiple accept="image/*"
+                                    onChange={(e) => setProductAllImg(e.target.files)} />
                             </div>
 
                             <div className="form-group">
                                 <label>Thumbnail Image:</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => setThumbnailImg(e.target.files[0])}
-                                />
+                                <input type="file" accept="image/*"
+                                    onChange={(e) => setThumbnailImg(e.target.files[0])} />
                             </div>
 
                             <div className="form-group">
                                 <label>Video:</label>
-                                <input
-                                    type="file"
-                                    accept="video/*"
-                                    onChange={(e) => setVideoUrl(e.target.files[0])}
-                                />
+                                <input type="file" accept="video/*"
+                                    onChange={(e) => setVideoUrl(e.target.files[0])} />
                             </div>
 
                             <div className="form-group">
                                 <label>Video Thumbnail:</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => setVideoThumbnail(e.target.files[0])}
-                                />
+                                <input type="file" accept="image/*"
+                                    onChange={(e) => setVideoThumbnail(e.target.files[0])} />
                             </div>
 
-                            {/* Basic Info */}
+                            {/* SAME BASIC INFO */}
                             <div className="form-group">
                                 <label>Main Category:</label>
                                 <input
@@ -171,13 +167,10 @@ const Jewelry = () => {
                                     onChange={(e) => setMainCategory(e.target.value)}
                                 />
                             </div>
-                            
+
                             <div className="form-group">
                                 <label>Sub Category:</label>
-                                <select
-                                    value={subCategory}
-                                    onChange={(e) => setSubCategory(e.target.value)}
-                                >
+                                <select value={subCategory} onChange={(e) => setSubCategory(e.target.value)}>
                                     <option value="">Select</option>
                                     <option value="Men">Men</option>
                                     <option value="Women">Women</option>
@@ -231,20 +224,30 @@ const Jewelry = () => {
                                 <input value={stockStatus} onChange={(e) => setStockStatus(e.target.value)} />
                             </div>
 
-                            {/* Jewellery Attributes */}
+                            {/* ✅ ONLY ADDED FIELDS */}
+                            <div className="form-group">
+                                <label>Size (S,M,L,XL):</label>
+                                <input value={size} onChange={(e) => setSize(e.target.value)} />
+                            </div>
+
                             <div className="form-group">
                                 <label>Material Type:</label>
                                 <input value={materialType} onChange={(e) => setMaterialType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
-                                <label>Stone Type:</label>
-                                <input value={stoneType} onChange={(e) => setStoneType(e.target.value)} />
+                                <label>Fabric Type:</label>
+                                <input value={fabricType} onChange={(e) => setFabricType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
-                                <label>Weight:</label>
-                                <input placeholder="e.g. 5g" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                                <label>Fit Type:</label>
+                                <input value={fitType} onChange={(e) => setFitType(e.target.value)} />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Pattern Type:</label>
+                                <input value={patternType} onChange={(e) => setPatternType(e.target.value)} />
                             </div>
 
                             <div className="form-group">
@@ -252,10 +255,15 @@ const Jewelry = () => {
                                 <input value={sameColorType} onChange={(e) => setSameColorType(e.target.value)} />
                             </div>
 
+                            <div className="form-group">
+                                <label>Care Instructions:</label>
+                                <textarea value={careInstructions} onChange={(e) => setCareInstructions(e.target.value)} />
+                            </div>
 
                             <button type="submit" disabled={submitting}>
                                 {submitting ? 'Submitting...' : 'Submit'}
                             </button>
+
                         </form>
                     </div>
                 </div>
@@ -264,4 +272,4 @@ const Jewelry = () => {
     );
 };
 
-export default Jewelry;
+export default Clothing;

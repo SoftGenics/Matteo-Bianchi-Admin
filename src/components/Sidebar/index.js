@@ -83,11 +83,11 @@ const Sidebar = () => {
 
                 {openClothing && (
                     <div className="submenu">
-                        <NavLink to="/clothing/add" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/clothings" className={({ isActive }) => isActive ? "active" : ""}>
                             ➕ Add Clothing
                         </NavLink>
 
-                        <NavLink to="/clothing/manage" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/clothings-manage" className={({ isActive }) => isActive ? "active" : ""}>
                             🛠 Manage Clothing
                         </NavLink>
                     </div>
@@ -105,11 +105,11 @@ const Sidebar = () => {
 
                 {openFootwear && (
                     <div className="submenu">
-                        <NavLink to="/footwear/add" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/footwear" className={({ isActive }) => isActive ? "active" : ""}>
                             ➕ Add Footwear
                         </NavLink>
 
-                        <NavLink to="/footwear/manage" className={({ isActive }) => isActive ? "active" : ""}>
+                        <NavLink to="/footwear-manage" className={({ isActive }) => isActive ? "active" : ""}>
                             🛠 Manage Footwear
                         </NavLink>
                     </div>

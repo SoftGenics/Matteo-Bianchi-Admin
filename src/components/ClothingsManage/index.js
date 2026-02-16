@@ -18,7 +18,7 @@ const ManageImage = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${SERVER_API_URL}/api/jewellery`);
+            const response = await fetch(`${SERVER_API_URL}/api/clothing`);
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
             }
@@ -41,7 +41,7 @@ const ManageImage = () => {
     }, []);
 
     const deleteProduct = async (id) => {
-        const api = `${SERVER_API_URL}/api/jewellery/${id}`;
+        const api = `${SERVER_API_URL}/api/clothing/${id}`;
         try {
             const response = await fetch(api, {
                 method: 'DELETE',
@@ -110,7 +110,7 @@ const ManageImage = () => {
 
 
             // API request to update the product
-            const response = await fetch(`${SERVER_API_URL}/api/jewellery/${editProduct.product_id}`, {
+            const response = await fetch(`${SERVER_API_URL}/api/clothing/${editProduct.product_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', // Set content type for JSON
@@ -308,9 +308,12 @@ const ManageImage = () => {
                             <p><strong>Product Type:</strong> {popupProduct.product_type || 'N/A'}</p>
                             <p><strong>Variant:</strong> {popupProduct.product_variant || 'N/A'}</p>
 
+                            <p><strong>Size:</strong> {popupProduct.size || 'N/A'}</p>
                             <p><strong>Material:</strong> {popupProduct.material_type || 'N/A'}</p>
-                            <p><strong>Stone_type:</strong> {popupProduct.stone_type || 'N/A'}</p>
-                            <p><strong>Weight:</strong> {popupProduct.weight || 'N/A'}</p>
+                            <p><strong>Fabric_Type:</strong> {popupProduct.fabric_type || 'N/A'}</p>
+                            <p><strong>Pattern_Type:</strong> {popupProduct.pattern_type || 'N/A'}</p>
+                            <p><strong>Care_Instructions:</strong> {popupProduct.care_instructions || 'N/A'}</p>
+                            <p><strong>Fit_Type:</strong> {popupProduct.fit_type || 'N/A'}</p>
                             <p><strong>Same Color Type:</strong> {popupProduct.same_color_type || 'N/A'}</p>
 
                             <p><strong>Description:</strong> {popupProduct.description || 'N/A'}</p>
@@ -473,7 +476,17 @@ const ManageImage = () => {
                                 </div>
 
 
-
+                                <div className="unique-form-group">
+                                    <label htmlFor="size" className="unique-label">Size:</label>
+                                    <input
+                                        type="text"
+                                        id="size"
+                                        name="size"
+                                        value={editData.size || ''}
+                                        onChange={handleInputChange}
+                                        className="unique-input"
+                                    />
+                                </div>
                                 <div className="unique-form-group">
                                     <label htmlFor="material_type" className="unique-label">Material_Type:</label>
                                     <input
@@ -486,23 +499,34 @@ const ManageImage = () => {
                                     />
                                 </div>
                                 <div className="unique-form-group">
-                                    <label htmlFor="stone_type" className="unique-label">Stone_Type:</label>
+                                    <label htmlFor="fabric_type" className="unique-label">Fabric_Type:</label>
                                     <input
                                         type="text"
-                                        id="stone_type"
-                                        name="stone_type"
-                                        value={editData.stone_type || ''}
+                                        id="fabric_type"
+                                        name="fabric_type"
+                                        value={editData.fabric_type || ''}
                                         onChange={handleInputChange}
                                         className="unique-input"
                                     />
                                 </div>
                                 <div className="unique-form-group">
-                                    <label htmlFor="weight" className="unique-label">Weight:</label>
+                                    <label htmlFor="fit_type" className="unique-label">Fit_Type:</label>
                                     <input
                                         type="text"
-                                        id="weight"
-                                        name="weight"
-                                        value={editData.weight || ''}
+                                        id="fit_type"
+                                        name="fit_type"
+                                        value={editData.fit_type || ''}
+                                        onChange={handleInputChange}
+                                        className="unique-input"
+                                    />
+                                </div>
+                                <div className="unique-form-group">
+                                    <label htmlFor="pattern_type" className="unique-label">Pattern_Type:</label>
+                                    <input
+                                        type="text"
+                                        id="pattern_type"
+                                        name="pattern_type"
+                                        value={editData.pattern_type || ''}
                                         onChange={handleInputChange}
                                         className="unique-input"
                                     />
@@ -515,6 +539,17 @@ const ManageImage = () => {
                                         id="same_color_type"
                                         name="same_color_type"
                                         value={editData.same_color_type || ''}
+                                        onChange={handleInputChange}
+                                        className="unique-input"
+                                    />
+                                </div>
+                                <div className="unique-form-group">
+                                    <label htmlFor="care_instructions" className="unique-label">Care_Instructions:</label>
+                                    <input
+                                        type="text"
+                                        id="care_instructions"
+                                        name="care_instructions"
+                                        value={editData.care_instructions || ''}
                                         onChange={handleInputChange}
                                         className="unique-input"
                                     />

@@ -9,14 +9,6 @@
     background-color: rgb(17, 16, 16);
 }
 
-/* .sidebar {
-    position: fixed;
-    width: 240px;
-    left: -240px;
-    height: 100%;
-    background-color: #fff;
-    transition: all 0.5s ease;
-} */
 .sidebar {
     position: fixed;
     left: 0;
@@ -27,6 +19,7 @@
     z-index: 9999;
     /* ✅ MOST IMPORTANT */
     transition: all 0.5s ease;
+    overflow-x: scroll;
 }
 
 .sidebar header {

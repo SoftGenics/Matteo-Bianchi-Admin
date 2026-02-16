@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 // import Header from '../Header';
 import { SERVER_API_URL } from '../../server/server';
 import { ToastContainer, toast } from 'react-toastify';
 import Sidebar from '../Sidebar';
+import UserContext from "../../store/userData";
 
 import './index.css';
 // import { toast } from 'react-toastify';
 
 const Home = () => {
+    const { user, isLoggedIn, login, logout } = useContext(UserContext);
     const [products, setProducts] = useState([]);
     const [additionalInfo, setAdditionalInfo] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
