@@ -1,13 +1,26 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './index.css';
 
 const Sidebar = () => {
+    const navigate = useNavigate();
     const [openPurse, setOpenPurse] = useState(true);
     const [openJewelry, setOpenJewelry] = useState(false);
     const [openClothing, setOpenClothing] = useState(true);
     const [openFootwear, setOpenFootwear] = useState(false);
 
+    const handleLogout = async () => {
+        try {
+            // LocalStorage se token remove
+            localStorage.removeItem("admin_access_token");
+
+            // Redirect to login page
+            navigate("/login");
+
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
 
     return (
         <div className='sidebar-main-container'>
@@ -71,7 +84,7 @@ const Sidebar = () => {
                     </div>
                 )}
 
-            
+
                 {/* CLOTHING MENU */}
                 <div className="menu-item" onClick={() => setOpenClothing(!openClothing)}>
                     <div style={{ marginLeft: "5px" }}>
@@ -145,6 +158,11 @@ const Sidebar = () => {
                     <i className="fas fa-envelope"></i>
                     <span>Contact</span>
                 </NavLink>
+
+                <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                </button>
+
             </div>
 
         </div>
