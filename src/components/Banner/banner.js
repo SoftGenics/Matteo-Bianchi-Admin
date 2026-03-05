@@ -382,7 +382,6 @@ const Banner = () => {
 
                                                             <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700", color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
-                                                                {/* <p style={{ color: "#000", fontSize: "16px" }}><strong>Exact Place:</strong> {eachData.exact_place}</p> */}
                                                             </div>
 
                                                             <div className='card-actions'>
