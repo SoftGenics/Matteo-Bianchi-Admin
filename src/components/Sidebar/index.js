@@ -159,6 +159,11 @@ const Sidebar = () => {
                     <span>Contact</span>
                 </NavLink>
 
+                <NavLink to="/seller" className={({ isActive }) => isActive ? "active" : ""}>
+                    <i className="fas fa-store"></i>
+                    <span>Sellers</span>
+                </NavLink>
+
                 <button className="logout-btn" onClick={handleLogout}>
                     Logout
                 </button>

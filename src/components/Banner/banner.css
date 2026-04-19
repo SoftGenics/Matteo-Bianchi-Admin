@@ -252,8 +252,7 @@ button {
 /* ======= IMAGE STYLING ======= */
 .carousel-image {
     width: 100%;
-    /* Make image responsive */
-    max-height: 400px;
+    height: 350px;
     /* object-fit: cover; */
     border-radius: 8px;
     border: 2px solid #ddd;

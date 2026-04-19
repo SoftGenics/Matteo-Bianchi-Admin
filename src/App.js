@@ -21,6 +21,7 @@ import Footwear from "./components/Footwear"
 import FootwearManage from "./components/FootwearManage"
 import Registration from "./Auth/Registration"
 import Login from "./Auth/Login"
+import Seller from "./components/Sellers";
 
 import './App.css';
 
@@ -71,6 +72,7 @@ const App = () => (
         <Route exact path="/clothings-manage" element={<ClothingsManage />} />
         <Route exact path="/footwear" element={<Footwear />} />
         <Route exact path="/footwear-manage" element={<FootwearManage />} />
+        <Route exact path="/seller" element={<Seller />} />
       </Route>
       {/* <Route exact path="/manage-video" element={<ManageVideo />} /> */}
       {/* <Route exact path="/add-videos" element={<AddVideos />} /> */}

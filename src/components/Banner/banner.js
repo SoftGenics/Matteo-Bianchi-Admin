@@ -313,10 +313,9 @@ const Banner = () => {
                                                         <div className='custom-card' key={eachData.id}>
                                                             <img className='carousel-image' style={{ height: "150px" }} src={`${SERVER_API_URL}/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
-                                                            <div className='card-details' >
+                                                            {/* <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700" , color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
-                                                                {/* <p style={{ color: "#000", fontSize: "16px" }}><strong>Exact Place:</strong>{eachData.exact_place}</p> */}
-                                                            </div>
+                                                            </div> */}
 
                                                             <div className='card-actions'>
                                                                 <button className='edit-btn'
@@ -380,9 +379,9 @@ const Banner = () => {
                                                         <div className='custom-card' key={eachData.id}>
                                                             <img className='carousel-image' style={{ height: "150px" }} src={`${SERVER_API_URL}/uploads/${eachData.slider_url}`} alt={`ImageItem ${eachData.id + 1}`} />
 
-                                                            <div className='card-details' >
+                                                            {/* <div className='card-details' >
                                                                 <p style={{ fontSize: "15px", marginBottom: "7px", fontWeight: "700", color:"#ff6600"}}><strong style={{ color: "#00c2cb", fontSize: "13px", fontWeight: "700" }}>TOP IMAGE LINK :  </strong> {eachData.slider_link}</p>
-                                                            </div>
+                                                            </div> */}
 
                                                             <div className='card-actions'>
                                                                 <button className='edit-btn' onClick={() => { openTopImagePopup(eachData)}}>Edit</button>
