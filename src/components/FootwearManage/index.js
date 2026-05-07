@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { SERVER_API_URL } from '../../server/server';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const ManageImage = () => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [popupProduct, setPopupProduct] = useState(null);
@@ -15,6 +17,12 @@ const ManageImage = () => {
     const [editData, setEditData] = useState({});
     const [activebtn, setActivebtn] = useState(true);
     const [notFoundMessage, setNotFoundMessage] = useState("");
+
+    const token = localStorage.getItem("admin_access_token");
+
+    if (!token) {
+        navigate("/login");
+    }
 
     const fetchProducts = async () => {
         try {
@@ -45,6 +53,9 @@ const ManageImage = () => {
         try {
             const response = await fetch(api, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error('Failed to delete product');
@@ -115,7 +126,8 @@ const ManageImage = () => {
             const response = await fetch(`${SERVER_API_URL}/api/footwear/${editProduct.product_id}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json', // Set content type for JSON
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(payload), // Send payload as JSON
             });
@@ -555,7 +567,7 @@ const ManageImage = () => {
                                     />
                                 </div>
 
-                              
+
                                 {activebtn ? (
                                     <button type="submit" className="unique-btn">Update</button>
                                 ) : (

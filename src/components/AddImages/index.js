@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { SERVER_API_URL } from '../../server/server';
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [productAllImg, setProductAllImg] = useState(null);
     const [productThumbnailImg, setProductThumbnailImg] = useState(null);
     const [productVideo, setProductVideo] = useState(null);
@@ -80,8 +82,16 @@ const Home = () => {
         formData.append('frameMaterial', frameMaterial);
 
         try {
+            const token = localStorage.getItem("admin_access_token");
+            if (!token) {
+                navigate("/login");
+            }
+
             const response = await fetch(`${SERVER_API_URL}/product`, {
                 method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 body: formData,
             });
 

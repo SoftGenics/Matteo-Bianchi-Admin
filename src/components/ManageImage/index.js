@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'; // Importing icons
 import { SERVER_API_URL } from '../../server/server';
 import Header from '../Header';
@@ -9,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const ManageImage = () => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [popupProduct, setPopupProduct] = useState(null);
@@ -20,6 +22,13 @@ const ManageImage = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(products);
     const [notFoundMessage, setNotFoundMessage] = useState("");
+
+    const token = localStorage.getItem("admin_access_token");
+
+    if (!token) {
+        navigate("/login");
+    }
+
 
     const handleSearch = () => {
         const query = searchQuery.toLowerCase();
@@ -77,6 +86,9 @@ const ManageImage = () => {
         try {
             const response = await fetch(api, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error('Failed to delete product');
@@ -134,7 +146,8 @@ const ManageImage = () => {
             const response = await fetch(`${SERVER_API_URL}/api/update/${editProduct.product_id}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json', // Set content type for JSON
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(payload), // Send payload as JSON
             });

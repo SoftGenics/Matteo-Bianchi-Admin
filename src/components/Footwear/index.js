@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 import { SERVER_API_URL } from '../../server/server';
@@ -7,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const Footwear = () => {
+    const navigate = useNavigate();
     const [productAllImg, setProductAllImg] = useState([]);
     const [thumbnailImg, setThumbnailImg] = useState(null);
     const [videoUrl, setVideoUrl] = useState(null);
@@ -65,6 +67,11 @@ const Footwear = () => {
         setSubmitting(true);
 
         try {
+            const token = localStorage.getItem("admin_access_token");
+            if (!token) {
+                navigate("/login");
+            }
+
             const formData = new FormData();
 
             for (let i = 0; i < productAllImg.length; i++) {
@@ -97,6 +104,9 @@ const Footwear = () => {
 
             const response = await fetch(`${SERVER_API_URL}/api/footwear`, {
                 method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 body: formData,
             });
 
